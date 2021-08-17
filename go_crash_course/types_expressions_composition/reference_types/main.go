@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// reference types(pointers, sices, maps, functions, channels)
+// reference types(pointers, slices, maps, functions, channels)
 
 //  pointers is something that points to a specific location in memory
 
