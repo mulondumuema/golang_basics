@@ -8,7 +8,7 @@ func main() {
 	// 	fmt.Println("Hi there an running infinitely")
 	// }
 
-	// // to range over a map
+	// // to range over a map (a range loop)
 	// for _, x := range myMap {
 
 	// }
