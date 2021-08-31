@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 )
@@ -65,4 +66,76 @@ func main() {
 		fmt.Println("The month after", m, "is", m%12 + 1)
 	}
 
+	// relational operators: e.g and
+	// it is good to put parenthesis to increase readability
+	second := 31
+	minute := 1
+
+	if (minute < 59) && ((second + 1) > 59) {
+		minute++
+	}
+
+	fmt.Println(minute)
+
+	a1 := 12.0
+	b1 := 5.0
+
+	// incase b is put to zero, the division by zero will return an error
+	// to hadle it:
+
+	// if b1 != 0 {
+	// 	c := divideTwoNumbers(a1, b1)
+
+	// 	if c == 2 {
+	// 		fmt.Println("We found a two")
+	// 	}
+	// }
+
+	// or you can use the short circuit evaluation
+	// if b1 != 0 && divideTwoNumbers(a1, b1) == 2 {
+	// 	fmt.Println("We found a two")
+	// }
+
+	// note: in this case you cannot put b != 0 after the evaluation since this might lead to a zero division being evaluated
+
+	c, err := divideTwoNumbers(a1,b1)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		if c == 2.0 {
+			fmt.Println("We found 2")
+		}
+	}
+
+	// let's try above with the blank operator, to see what happens
+	_, myerr := divideTwoNumbers(a1,b1)
+	if err != nil {
+		fmt.Println(myerr)
+	} else {
+		fmt.Println("the blank assignement works!")
+	}
+
+	i := 0
+
+	for {
+		i++
+		if i > 3 {
+			break
+		}
+		fmt.Println("i is", i)
+	}
+}
+
+// func divideTwoNumbers(x, y int) int {
+// 	return x / y
+// }
+
+// to handle the zero division, you can add the error handling in the divideTwoNumbers function
+// in this case, the function will return two values i.e the output of the evaluation and error. the error is a built-in type from go
+
+func divideTwoNumbers(x, y float64) (float64, error) {
+	if y == 0 {
+		return 0, errors.New("cannot divide by 0") // you need to return something, so we return 0 and the error message
+	}
+	return x / y, nil
 }
